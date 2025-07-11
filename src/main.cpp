@@ -572,7 +572,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 		std::string bestString;
 		if (m_level->isPlatformer()) {
 			int sec = round(m_level->m_bestTime / 1000);
-			bestString = std::to_string(sec) + "с";
+			bestString = std::to_string(sec) + "сек";
 
 			if (m_level->m_bestTime == 0) {
 				bestString = "Нет рекорда";
@@ -597,6 +597,8 @@ class $modify(MyPlayLayer, PlayLayer) {
 		
 		if (m_level->isPlatformer()) {
 			details = details + " платформер";
+		} else {
+			details = details + " уровень";
 		}
 
 		std::string detailsPercentString = "";
@@ -606,7 +608,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 			detailsPercentString = " (" + std::to_string(gm->getCurrentPercentInt()) + "%)";
 		}
 		#endif
-		details = fmt::format("{} уровень{} (Рекорд: {})", details, detailsPercentString, bestString);
+		details = fmt::format("{} {} (Рекорд: {})", details, detailsPercentString, bestString);
 
 		rpc->updateDiscordRP(MODID, 
 			details,
