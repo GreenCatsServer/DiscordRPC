@@ -64,4 +64,4 @@ jobs:
                 body: ${{ steps.info.outputs.cl }}
                 draft: true
                 files: |
-                  ./techstudent10.discord_rich_presence.geode
+                  ./gcs.rpc.geode
