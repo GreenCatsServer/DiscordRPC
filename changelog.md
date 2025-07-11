@@ -1,4 +1,8 @@
 # Discord Rich Presence
+## v3.0.3
+* Ported mod to GreenCatsServer
+* Translated mod to russian
+* Added support of random large images per game start
 ## v3.0.0 and v3.0.1
 * Update to Geode v4.0.0 and GD 2.2074
 ## v2.11.0

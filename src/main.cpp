@@ -26,6 +26,8 @@ using namespace gdrpc;
 // class WineBridgeTask final;
 
 $execute {
+	srand(time(NULL));
+	
 	using NewRPCFilter = geode::DispatchFilter<std::string>;
 	// log::info("{}", "set_default_rpc_enabled"_spr);
 	new EventListener<NewRPCFilter>(+[](std::string const& newRPCStr) {
@@ -266,30 +268,30 @@ class $modify(MenuLayer) {
 	bool init() {
 		if (!MenuLayer::init()) return false;
 		rpc->initDiscordRP();
-		rpc->registerMod("techstudent10.discord_rich_presence");
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Main Menu");
+		rpc->registerMod("gcs.rpc");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Главное меню");
 
 		return true;
 	}
 
 	void onOptions(CCObject* sender) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus","Changing settings");
+		rpc->updateDiscordRP(MODID, "Листает менюшки","В настройках");
 		return MenuLayer::onOptions(sender);
 	}
 
 	void onPlay(CCObject* sender) {
-		rpc->updateDiscordRP(MODID, "Browsing main levels");
+		rpc->updateDiscordRP(MODID, "Смотрит официальные уровни");
 		return MenuLayer::onPlay(sender);
 	}
 
 	void onGarage(CCObject* sender) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Character customization");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Выбирает иконки");
 		return MenuLayer::onGarage(sender);
 	}
 
 	void onAchievements(CCObject* sender) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
-		rpc->updateDiscordRP(MODID, "Browsing Menus", shouldBeFunny ? "Wishing for the Creator Points UFO" : "Achievements");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", shouldBeFunny ? "Мечтает о ЮФОшке за рейт" : "Достижения");
 		MenuLayer::onAchievements(sender); // NetheriteMiner didn't test this one :()
 	}
 };
@@ -297,22 +299,22 @@ class $modify(MenuLayer) {
 class $modify(CreatorLayer) {
 	bool init() {
 		if (!CreatorLayer::init()) return false;
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Creator Tab");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Вкладка Креатора");
 		return true;
 	}
 
 	void onLeaderboards(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out leaderboards");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит лидерборды");
 		return CreatorLayer::onLeaderboards(p0);
 	}
 
 	void onMyLevels(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out created levels");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит локальные уровни");
 		return CreatorLayer::onMyLevels(p0);
 	}
 
 	void onSavedLevels(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out saved levels");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит сохранённые уровни");
 		return CreatorLayer::onSavedLevels(p0);
 	}
 
@@ -320,26 +322,26 @@ class $modify(CreatorLayer) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
 		std::string state = "";
 		if (shouldBeFunny) {
-			state = "Checking out the worst levels known to man";
+			state = "Смотрит наиужаснейшие за всё время уровни";
 		} else {
-			state = "Checking out map packs";
+			state = "Смотрит Мап-Паки";
 		}
-		rpc->updateDiscordRP(MODID, "Browsing Menus", state);
+		rpc->updateDiscordRP(MODID, "Листает менюшки", state);
 		return CreatorLayer::onMapPacks(p0);
 	}
 
 	void onDailyLevel(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the daily level");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит ежедневный уровень");
 		return CreatorLayer::onDailyLevel(p0);
 	}
 
 	void onWeeklyLevel(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the weekly level");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит еженедельный уровень");
 		return CreatorLayer::onWeeklyLevel(p0);
 	}
 
 	void onFeaturedLevels(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the featured tab");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит вкладку Featured");
 		return CreatorLayer::onFeaturedLevels(p0);
 	}
 
@@ -347,21 +349,21 @@ class $modify(CreatorLayer) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
 		std::string state = "";
 		if (shouldBeFunny) {
-			state = "Checking out the better map packs";
+			state = "Смотрит нормальные Мап-Паки";
 		} else {
-			state = "Checking out the gauntlets";
+			state = "Смотрит Гаунтлеты";
 		}
-		rpc->updateDiscordRP(MODID, "Browsing Menus", state);
+		rpc->updateDiscordRP(MODID, "Листает менюшки", state);
 		return CreatorLayer::onGauntlets(p0);
 	}
 
 	void onAdventureMap(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the map");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит карту");
 		return CreatorLayer::onAdventureMap(p0);
 	}
 
 	void onEventLevel(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the event level");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит Ивент уровень");
 		return CreatorLayer::onEventLevel(p0);
 	}
 
@@ -369,17 +371,17 @@ class $modify(CreatorLayer) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
 		std::string state = "";
 		if (shouldBeFunny) {
-			state = "Envying Scratch's chopper";
+			state = "Завидует вертолёту Скрэтча";
 		}
 		else {
-			state = "Checking out versus mode";
+			state = "Смотрит Версус Мод";
 		}
-		rpc->updateDiscordRP(MODID, "Browsing Menus", state);
+		rpc->updateDiscordRP(MODID, "Листает менюшки", state);
 		return CreatorLayer::onMultiplayer(p0);
 	}
 	
 	void onPaths(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the paths");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит Пути");
 		return CreatorLayer::onPaths(p0);
 	}
 
@@ -388,11 +390,11 @@ class $modify(CreatorLayer) {
 		std::string details = "";
 		std::string state = "";
 		if (shouldBeFunny) {
-			details = "Looking up answers on";
-			state = "the wiki with Glubfub";
+			details = "Ищет ответы на";
+			state = "вики с Glubfub";
 		}
 		else {
-			details = "Browsing vaults";
+			details = "Листает хранилища";
 			state = "Vault of Secrets";
 		}
 		rpc->updateDiscordRP(MODID, details, state);
@@ -403,22 +405,22 @@ class $modify(CreatorLayer) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
 		std::string state = "";
 		if (shouldBeFunny) {
-			state = "Checking out the moderator-created map packs";
+			state = "Смотрит Мап-Паки от модераторов";
 		}
 		else {
-			state = "Checking out lists";
+			state = "Смотрит списки уровней";
 		}
-		rpc->updateDiscordRP(MODID, "Browsing Menus", state);
+		rpc->updateDiscordRP(MODID, "Листает менюшки", state);
 		return CreatorLayer::onTopLists(p0);
 	}
 
 	void onTreasureRoom(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out the treasure room");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит комнату сокровищ");
 		return CreatorLayer::onTreasureRoom(p0);
 	}
 
 	void onChallenge(CCObject* p0) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out quests"); 
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит квесты"); 
 		return CreatorLayer::onChallenge(p0);
 	}
 };
@@ -426,7 +428,7 @@ class $modify(CreatorLayer) {
 class $modify(LevelSearchLayer) {
 	bool init(int p0) {
 		if (!LevelSearchLayer::init(p0)) return false;
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Search Tab");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Вкладка поиска");
 		return true;
 	}
 };
@@ -437,10 +439,10 @@ class $modify(LevelInfoLayer) {
 		bool isRated = level->m_stars.value() != 0;
 		
 		rpc->updateDiscordRP(MODID, 
-			"Viewing Level",
-			std::string(level->m_levelName) + " by " + std::string(level->m_creatorName),
+			"Играет в уровен",
+			std::string(level->m_levelName) + " от " + std::string(level->m_creatorName),
 			getAssetKey(level),
-			(isRated) ? "Rated" : "Not Rated"
+			(isRated) ? "Оценён" : "Не оценён"
 		);
 		return true;
 	}
@@ -456,9 +458,9 @@ std::string workingTime(int value){
     int seconds = value % 60;
 
     std::ostringstream stream;
-    if(hours > 0) stream << hours << "h ";
-    if(minutes > 0) stream << minutes << "m ";
-    stream << seconds << "s";
+    if(hours > 0) stream << hours << "ч ";
+    if(minutes > 0) stream << minutes << "м ";
+    stream << seconds << "с";
 
     return stream.str();
 }
@@ -480,9 +482,9 @@ class $modify(MyLevelEditorLayer, LevelEditorLayer) {
 		auto shouldShowSensitive = Mod::get()->getSettingValue<bool>("private-info");
 		std::string details = "";
 		if (shouldShowSensitive) {
-			details = "Working on level \"" + std::string(m_level->m_levelName) + "\"";
+			details = "Работает над \"" + std::string(m_level->m_levelName) + "\"";
 		} else {
-			details = "Working on a level";
+			details = "Работает над уровнем";
 		}
 		int objectCount;
 		#ifdef GEODE_IS_WINDOWS
@@ -494,14 +496,14 @@ class $modify(MyLevelEditorLayer, LevelEditorLayer) {
 		auto showTotalTime = Mod::get()->getSettingValue<bool>("show-total-time");
 		std::string totalTime;
 		if (showTotalTime) {
-			totalTime = " (worked on for " + workingTime(m_level->m_workingTime) + ")";
+			totalTime = " (уже " + workingTime(m_level->m_workingTime) + ")";
 		}
 		rpc->updateDiscordRP(
 			MODID,
 			details,
-			std::to_string(objectCount) + " objects",
+			std::to_string(objectCount) + " объектов",
 			"editor",
-			"Editing a level",
+			"Строит уровень",
 			true,
 			false,
 			"",
@@ -564,40 +566,37 @@ class $modify(MyPlayLayer, PlayLayer) {
 					(isRobTopLevel) ? "RobTopGames" : std::string(m_level->m_creatorName)
 				);
 		} else if (!shouldShowSensitive) {
-			state = "Playtesting a created level";
+			state = "Играет в свой уровень";
 		}
 
 		std::string bestString;
 		if (m_level->isPlatformer()) {
 			int sec = round(m_level->m_bestTime / 1000);
-			bestString = std::to_string(sec) + "s";
+			bestString = std::to_string(sec) + "с";
 
 			if (m_level->m_bestTime == 0) {
-				bestString = "No Best Time";
+				bestString = "Нет рекорда";
 			}
 		} else {
 			bestString = std::to_string(m_level->m_normalPercent.value()) + "%";
 		}
 
-		std::string details = (m_isPracticeMode ? "Practicing" : "Playing");
-		if (m_level->isPlatformer()) {
-			details = details + " a platformer";
-		}
+		std::string details = (m_isPracticeMode ? "Практикует" : "Играет в");
 
 		bool isDaily = m_level->m_dailyID.value() != 0;
 		bool isDemon = m_level->m_demon.value() != 0;
 
 		if (isDaily) {
 			if (isDemon) {
-				details = details + " the weekly";
+				details = details + " еженедельный";
 			}
 			else {
-				details = details + " the daily";
+				details = details + " ежедневный";
 			}
 		}
-
-		if (details == "Playing") {
-			details = "Playing a";
+		
+		if (m_level->isPlatformer()) {
+			details = details + " платформер";
 		}
 
 		std::string detailsPercentString = "";
@@ -607,13 +606,13 @@ class $modify(MyPlayLayer, PlayLayer) {
 			detailsPercentString = " (" + std::to_string(gm->getCurrentPercentInt()) + "%)";
 		}
 		#endif
-		details = fmt::format("{} level{} (Best: {})", details, detailsPercentString, bestString);
+		details = fmt::format("{} уровень{} (Рекорд: {})", details, detailsPercentString, bestString);
 
 		rpc->updateDiscordRP(MODID, 
 			details,
 			state,
 			getAssetKey(m_level),
-			(isRated) ? "Rated" : "Not Rated",
+			(isRated) ? "Оценён" : "Не оценён",
 			true,
 			resetTime
 		);
@@ -628,21 +627,21 @@ class $modify(GJShopLayer) {
 		auto shouldBeFunny = Mod::get()->getSettingValue<bool>("funny-mode");
 		switch(p0) {
 			case ShopType::Normal:
-				rpc->updateDiscordRP(MODID, shouldBeFunny ? "Shopping with Zolguroth" : "Shopping with the Shopkeeper", orbs);
+				rpc->updateDiscordRP(MODID, shouldBeFunny ? "За покупочками у Золгурота" : "За покупочками у Шопкипера", orbs);
 				break;
 			case ShopType::Secret:
-				rpc->updateDiscordRP(MODID, "Shopping with Scratch", orbs);
+				rpc->updateDiscordRP(MODID, "За покупочками у Скрэтча", orbs);
 				break;
 			case ShopType::Community:
-				rpc->updateDiscordRP(MODID, "Shopping with Potbor", orbs);
+				rpc->updateDiscordRP(MODID, "За покупочками у Потбора", orbs);
 				break;
 			default:
 				if (shouldBeFunny) {
 					// ⬘ seems like the best unicode diamond for the diamond shopkeeper when the ShopType enum contains all 5
-					rpc->updateDiscordRP(MODID, "Shopping Around", "At Walmart");
+					rpc->updateDiscordRP(MODID, "За покупочками", "в Ашане");
 				}
 				else {
-					rpc->updateDiscordRP(MODID, "Shopping Around", orbs);
+					rpc->updateDiscordRP(MODID, "За покупочками", orbs);
 				}
 		}
 
@@ -652,7 +651,7 @@ class $modify(GJShopLayer) {
 
 class $modify(GJGarageLayer) {
 	void onShards(CCObject* sender) {
-		rpc->updateDiscordRP(MODID, "Browsing Menus", "Checking out shards");
+		rpc->updateDiscordRP(MODID, "Листает менюшки", "Смотрит Шарды");
 		GJGarageLayer::onShards(sender);
 	}
 };
@@ -664,11 +663,11 @@ class $modify(OptionsLayer) {
 		std::string details = "";
 		std::string state = "";
 		if (shouldBeFunny) {
-			details = "Looking up answers on";
-			state = "the wiki with Spooky";
+			details = "Ищет ответы на";
+			state = "вики с Spooky";
 		}
 		else {
-			details = "Browsing vaults";
+			details = "Листает хранилища";
 			state = "The Vault";
 		}
 		rpc->updateDiscordRP(MODID, details, state);
@@ -685,11 +684,11 @@ class $modify(SecretLayer4) {
 		std::string details = "";
 		std::string state = "";
 		if (shouldBeFunny) {
-			details = "Looking up answers on";
-			state = "the wiki with the Gatekeeper";
+			details = "Ищет ответы на";
+			state = "вики с Gatekeeper";
 		}
 		else {
-			details = "Browsing vaults";
+			details = "Листает хранилища";
 			state = "Chamber of Time";
 		}
 		rpc->updateDiscordRP(MODID, details, state);

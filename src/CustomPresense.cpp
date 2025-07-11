@@ -1,4 +1,5 @@
 #include "../include/CustomPresense.hpp"
+#include "../include/GreenCatsServer.hpp"
 #include "discord_rpc.h"
 
 using namespace geode::prelude;
@@ -99,7 +100,9 @@ void gdrpc::GDRPC::updateDiscordRP(
 	auto shouldShowTime = Mod::get()->getSettingValue<bool>("show-time");
 	DiscordRichPresence discordPresence{};
     if (largeImage == "") {
-        discordPresence.largeImageKey = "gd_large";
+		largeImage = fmt::format("gd_large{}", GreenCatsServer::imageNumber);
+
+        discordPresence.largeImageKey = largeImage.c_str();
     } else {
         discordPresence.largeImageKey = largeImage.c_str();
     }
@@ -107,7 +110,7 @@ void gdrpc::GDRPC::updateDiscordRP(
 		discordPresence.largeImageText = largeImageText.c_str();
 	}
 	if (isIdling) {
-		discordPresence.details = "Idling";
+		discordPresence.details = "Ожидание...";
 	} else {
 		discordPresence.details = details.c_str();
 		discordPresence.state = state.c_str();
@@ -121,9 +124,9 @@ void gdrpc::GDRPC::updateDiscordRP(
 		}
 	}
 	static std::string sensitiveStr;
-	sensitiveStr = fmt::format("{} (playing on {})", gm->m_playerName, GEODE_PLATFORM_NAME);
+	sensitiveStr = fmt::format("{} (играет на {})", gm->m_playerName, GEODE_PLATFORM_NAME);
 	static std::string notSensitiveStr;
-	notSensitiveStr = fmt::format("Playing Geometry Dash on {}", GEODE_PLATFORM_NAME);
+	notSensitiveStr = fmt::format("Играет в GreenCatsServer на {}", GEODE_PLATFORM_NAME);
 	if (shouldShowSensitive) {
 		discordPresence.largeImageText = sensitiveStr.c_str();
 	} else {

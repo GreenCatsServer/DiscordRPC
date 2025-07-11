@@ -1,6 +1,7 @@
-# DiscordRPC for Geode
+# DiscordRPC for GreenCatsServer
 
-A custom Rich Presence mod for Geode.
+A custom Rich Presence mod for GreenCatsServer.
+Original mod was made by TechStudent10, we just forked it :fire:
 
 ### Options (found by clicking the settings button below)
 
