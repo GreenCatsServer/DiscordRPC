@@ -14,7 +14,7 @@ class $modify(AppDelegate) {
 		if (Mod::get()->getSettingValue<bool>("idling")) {
 			isIdling = true;
 			// log::info("idle time");
-			gdrpc::GDRPC::getSharedInstance()->updateDiscordRP("techstudent10.discord_rich_presence", "idling");
+			gdrpc::GDRPC::getSharedInstance()->updateDiscordRP("gcs.rpc", "idling");
 		}
 	}
 
