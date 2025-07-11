@@ -439,7 +439,7 @@ class $modify(LevelInfoLayer) {
 		bool isRated = level->m_stars.value() != 0;
 		
 		rpc->updateDiscordRP(MODID, 
-			"Играет в уровен",
+			"Играет в уровень",
 			std::string(level->m_levelName) + " от " + std::string(level->m_creatorName),
 			getAssetKey(level),
 			(isRated) ? "Оценён" : "Не оценён"
